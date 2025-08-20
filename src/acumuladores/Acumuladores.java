@@ -14,8 +14,39 @@ public class Acumuladores {
 	 * @return
 	 */
 	public boolean todosMultiplosEnAlgunaFila(int[][] mat, int num) { 
-		throw new RuntimeException("Metodo no implementado aun!!!");
+		
+		// si el numero es negativo, o la matriz es vacia, retorna falso.
+		if (mat == null || mat.length == 0 || num <= 0) {
+			return false;
+		}
+		
+		boolean hayAlgunaFila = false;
+		//por cada fila, si todos son multiplos, retorna true. Si no, retorna false.
+		for (int f = 0; f < mat.length; f++) {
+			hayAlgunaFila |= todosMultiplos(mat[f], num);
+		}
+		return hayAlgunaFila;
 	}
+	
+	//por cada numero de la fila, retorna false si uno no es multiplo. Si todos son multiplos, retorna true.
+	
+	///////////////////
+	boolean todosMultiplos(int[]fila, int num) {
+		boolean todosMultiplos = true;
+		for (int elem : fila) {
+			todosMultiplos &= esMultiplo(elem, num);
+		}
+		return todosMultiplos;
+	}
+	///////////////////
+	
+	//retorna si n es multiplo de num
+	
+	///////////////////
+	boolean esMultiplo(int n, int num) {
+		return n % num == 0;
+	}
+	///////////////////
 	
 	/**
 	 * Dado 2 matrices se verifica si hay intersección entre las filas de cada
