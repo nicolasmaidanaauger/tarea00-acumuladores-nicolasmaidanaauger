@@ -60,9 +60,26 @@ public class Acumuladores {
 	 * @return
 	 */
 	public boolean hayInterseccionPorFila(int[][] mat1, int[][]mat2) { 
-		throw new RuntimeException("Metodo no implementado aun!!!");
+		if (mat1 == null || mat2 == null || mat1.length == 0 || mat2.length == 0 || mat1.length != mat2.length) {
+			return false;
+		}
+		
+		boolean todasLasFilasTienen = true; // acumulador AND (todas las filas)
+		for (int i = 0 ; i < mat1.length ; i++) {
+			todasLasFilasTienen &= verificacionInterseccion(mat1[i], mat2[i]);
+		}
+		return todasLasFilasTienen;
 	}
 	
+	boolean verificacionInterseccion(int []f, int[]g) {
+		boolean hayInterseccion = false; // acumulador OR (algun numero en comun)
+		for (int x : f) {
+			for (int z : g) {
+				hayInterseccion |= (x == z);
+			}
+		}
+		return hayInterseccion;
+	}
 	/**
 	 * Dada una matriz y el índice de una columna, se verifica si existe alguna
 	 * fila cuya suma de todos sus elementos sea mayor estricto que la suma de
